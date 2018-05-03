@@ -12,8 +12,9 @@ library(data.table)
 library(tidyverse)
 library(readxl)
 
-test_dta <- file.path("data", "test_dta.xlsx") 
-dta<- read_excel(test_dta)
+# test_dta <- file.path("data", "test_dta.xlsx") 
+# dta<- read_excel(test_dta)
+dta<- read.csv("https://raw.githubusercontent.com/AAPIData/raw_data/master/data_factsheets/test_dta.csv")
 source_dta <- file.path("data", "source_information.xlsx") 
 source<- read_excel(source_dta)
 topic_lookup <-file.path("data", "topic_lookup.xlsx") 
@@ -97,7 +98,7 @@ dta_show <- reactive({
           select(label, everything())
       }  else if(topic_group == "Political Participation"){
         df %>% mutate(value = case_when(
-          Estimate %in% percent_estimates ~ paste(round(as.numeric(value)*100,1),"%",sep = ""),
+          Estimate %in% percent_estimates & !is.na(value) ~ paste(round(as.numeric(value)*100,1),"%",sep = ""),
           TRUE ~ value))  %>%
           spread(group, value) %>% 
           select(-Estimate) %>%
