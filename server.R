@@ -15,10 +15,13 @@ library(readxl)
 # test_dta <- file.path("data", "test_dta.xlsx") 
 # dta<- read_excel(test_dta)
 dta<- read.csv("https://raw.githubusercontent.com/AAPIData/raw_data/master/data_factsheets/test_dta.csv")
-source_dta <- file.path("data", "source_information.xlsx") 
-source<- read_excel(source_dta)
-topic_lookup <-file.path("data", "topic_lookup.xlsx") 
-topic_lookup_dta <- read_excel(topic_lookup)
+# source_dta <- file.path("data", "source_information.xlsx") 
+# source<- read_excel(source_dta)
+source <- read.csv("https://raw.githubusercontent.com/AAPIData/raw_data/master/data_factsheets/source_information.csv")
+# topic_lookup <-file.path("data", "topic_lookup.xlsx") 
+# topic_lookup_dta <- read_excel(topic_lookup)
+topic_lookup_dta <- read.csv("https://raw.githubusercontent.com/AAPIData/raw_data/master/data_factsheets/topic_lookup.csv")
+
 topic_lookup_dta<- topic_lookup_dta %>% rename(Estimate= "var_name")
 
 shinyServer(function(input, output) {
