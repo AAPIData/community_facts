@@ -77,7 +77,8 @@ dta_show <- reactive({
     generate_table <- function(df,topic_group){
       if(topic_group == "Total Population"){
         df %>% mutate(value = case_when(
-          Estimate == "pop" ~ scales::comma(round(as.numeric(value),0)))) %>%
+          Estimate == "pop" ~ scales::comma(round(as.numeric(value),0)),
+          Estimate == "pop2" ~ scales::comma(round(as.numeric(value),0)))) %>%
           spread(group, value) %>% 
           select(-Estimate) %>%
           select(label, everything())
