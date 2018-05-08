@@ -43,6 +43,7 @@ library(tidyverse)
 library(xtable)
 library(knitr)
 library(kableExtra)
+options(tinytex.verbose = TRUE)
 
 
 # test_dta <- file.path("data", "test_dta.xlsx") 
