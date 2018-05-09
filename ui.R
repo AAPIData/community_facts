@@ -73,7 +73,10 @@ shinyUI(
                conditionalPanel(
                  condition = "input.Group != null & input.checkGroup.length > 0",
                  downloadButton("report", "Download as PDF")
-               )
+               ),
+            actionButton(inputId='ab1', label="Back to AAPI Data", 
+                                icon = icon("th"), 
+                                onclick ="window.open('http://aapidata.com', '_blank')")
              #)   
       ),
     column(8,
