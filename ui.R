@@ -189,7 +189,7 @@ shinyUI(
              tags$hr(),
              h4("Sources"),
              tableOutput("sources"),
-             tags$footer("A Project of", tags$a(href = "aapidata.com", "AAPI Data"))
+             tags$footer("A Project of", tags$a(href = "http://www.aapidata.com", "AAPI Data"))
            )  
            )
     # Sidebar with a slider input for number of bins
