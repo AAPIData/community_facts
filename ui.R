@@ -81,6 +81,8 @@ shinyUI(
       ),
     column(8,
            mainPanel(
+            tabsetPanel(type="tabs",
+                        tabPanel("Tables",
              tags$style(type="text/css",
                         ".shiny-output-error { visibility: hidden; }",
                         ".shiny-output-error:before { visibility: hidden; }"
@@ -193,7 +195,10 @@ shinyUI(
              h4("Sources"),
              tableOutput("sources"),
              tags$footer("A Project of", tags$a(href = "http://www.aapidata.com", "AAPI Data"))
-           )  
+           ),
+           tabPanel("Visualize")
+    )
+             )  
            )
     # Sidebar with a slider input for number of bins
 #    sidebarLayout(
