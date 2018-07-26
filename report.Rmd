@@ -66,6 +66,11 @@ if("Population Growth" %in% params$Topics){
 }else{
    popgrowth <-F
 }
+if("Age Distribution" %in% params$Topics){
+  age <-T
+}else{
+   age <-F
+}
 if("Education" %in% params$Topics){
   edu <- T
 }else{
@@ -141,6 +146,22 @@ kable(dta_showme,format = "latex",align=c("l","c","c","c")) %>%
 dta_showme <- 
       params$dataset %>% 
         filter(topic_group == "Population Growth") %>% pull(output) %>% data.frame()%>% rename(` `= label)
+
+kable(dta_showme,format = "latex", align=c("l","c","c","c")) %>%
+  kable_styling( full_width = T,font_size=11) %>%
+  row_spec(0, bold=T) %>%
+   column_spec(1, width = "90em")
+
+```
+
+`r if(age == T)'## Age Distribution'`
+
+
+```{r age, echo=FALSE, message=FALSE, warning=FALSE, eval= age== T}
+
+dta_showme <- 
+      params$dataset %>% 
+        filter(topic_group == "Age Distribution") %>% pull(output) %>% data.frame()%>% rename(` `= label)
 
 kable(dta_showme,format = "latex", align=c("l","c","c","c")) %>%
   kable_styling( full_width = T,font_size=11) %>%

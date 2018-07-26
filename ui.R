@@ -113,6 +113,16 @@ shinyUI(
                column(
                  12, align = "left",
                  conditionalPanel(
+                   "$.inArray('Age Distribution', input.checkGroup) > -1 ",
+                   h4("Age Distribution"),
+                   tableOutput("age_distribution")
+                 )
+               )
+             ),
+             fluidRow(
+               column(
+                 12, align = "left",
+                 conditionalPanel(
                    "$.inArray('Top States', input.checkGroup) > -1",
                    h4("Top States by Resident Population"),
                    tableOutput("top_states")
