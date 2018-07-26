@@ -88,6 +88,12 @@ dta_show <- reactive({
           spread(group, value) %>% 
           select(-Estimate) %>%
           select(label, everything())
+      } else if(topic_group == "Age Distribution"){
+        df %>% mutate(value = case_when(
+          Estimate %in% percent_estimates & !is.na(value) ~ paste(round(as.numeric(value)*100,1),"%",sep = "")))  %>%
+          spread(group, value) %>% 
+          select(-Estimate) %>%
+          select(label, everything())
       } else if(topic_group == "Education"){
         df %>% mutate(value = case_when(
           Estimate %in% percent_estimates & !is.na(value) ~ paste(round(as.numeric(value)*100,1),"%",sep = "")))  %>%
@@ -205,6 +211,16 @@ top_states_show <- reactive({
       # dta_showme <- data.frame(dta_showme) %>% rename(` `= label)
       dta_showme %>% 
         filter(topic_group == "Population Growth") %>% pull(output) %>% data.frame(check.names = F)%>% rename(` `= label)
+    },striped = TRUE, bordered = TRUE,  
+    hover = TRUE, spacing = 'l', na=" ",      
+    width = '100%')
+    
+    output$age_distribution <-renderTable({
+      dta_showme <- dta_show()
+      # dta_showme <- dta_showme$output[2]
+      # dta_showme <- data.frame(dta_showme) %>% rename(` `= label)
+      dta_showme %>% 
+        filter(topic_group == "Age Distribution") %>% pull(output) %>% data.frame(check.names = F)%>% rename(` `= label)
     },striped = TRUE, bordered = TRUE,  
     hover = TRUE, spacing = 'l', na=" ",      
     width = '100%')
