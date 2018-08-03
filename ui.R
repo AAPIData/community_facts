@@ -25,18 +25,7 @@ topics <- topic_lookup_dta %>% distinct(topic_group) %>% pull()
 # Define UI for application that draws a histogram
 shinyUI(
   fluidPage(
-    tags$script(HTML(
-      "
-<script async src='https://www.googletagmanager.com/gtag/js?id=UA-56128369-3'>
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      
-      gtag('config', 'UA-56128369-3');
-      
-      "
-    )),
+    tags$head(includeScript("google-analytics.js")),
     theme = shinytheme("slate"),
     tags$div(
       class = "header", checked = NA,
